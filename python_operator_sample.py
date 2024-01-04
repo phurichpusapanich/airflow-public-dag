@@ -11,8 +11,8 @@ default_args = {
 }
 
 
-def greet():
-    print("HELLO EXAMPLE!!!")
+def greet(name, age):
+    print(f"Hello, name is {name} and I am {age} years old")
 
 
 with DAG(
@@ -25,7 +25,8 @@ with DAG(
 
     task1 = PythonOperator(
         task_id="greet",
-        python_callable=greet
+        python_callable=greet,
+        op_kwargs={'name': 'Niche', 'age': 29}
     )
 
     task1

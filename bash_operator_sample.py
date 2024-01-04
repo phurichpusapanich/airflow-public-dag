@@ -1,6 +1,8 @@
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.bash import BashOperator
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 default_args = {
     'owner': 'Niche',

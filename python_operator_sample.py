@@ -6,8 +6,6 @@ from airflow.operators.python import PythonOperator
 
 default_args = {
     'owner': 'Niche',
-    'retries': 5,
-    'retry_delay': timedelta(minutes=2)
 }
 
 

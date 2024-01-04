@@ -26,4 +26,9 @@ with DAG(
         bash_command="echo Hey, I am task 2!"
     )
 
-    task1.set_downstream(task2)
+    task3 = BashOperator(
+        task_id="print_date",
+        bash_command="date",
+    )
+
+    task1 >> task2 >> task3

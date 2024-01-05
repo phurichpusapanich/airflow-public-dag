@@ -14,7 +14,8 @@ with DAG(
     default_args=default_args,
     description='Sample of backfill and catchup',
     start_date=pendulum.datetime(2024, 1, 4, tz="UTC"),
-    schedule_interval='@daily'
+    schedule_interval='@daily',
+    catchup=True
 
 ) as dag:
     task1 = BashOperator(

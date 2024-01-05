@@ -14,23 +14,26 @@ default_args = {
      schedule_interval='@daily')
 def hello_world_etl():
     # Declare tasks
-    @task()
+    @task(multiple_outputs=True)
     def get_name():
-        return "Niko"
+        return {
+            "first_name": "Niko",
+            "last_name": "Koni"
+        }
 
     @task()
     def get_age():
         return 29
 
     @task()
-    def greet(name, age):
-        print(f"{name} - {age}")
+    def greet(name: dict, age: int):
+        print(f"{name.get('first_name')} {name.get('last_name')} - {age}")
 
     # Compute first 2 tasks
-    name = get_name()
+    name_dict = get_name()
     age = get_age()
     # use the result in the 3rd task to create a DAG
-    greet(name=name, age=age)
+    greet(name=name_dict, age=age)
 
 # Initialise
 greet_dag = hello_world_etl()
